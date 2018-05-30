@@ -12,6 +12,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
     public void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
         http.antMatcher("/**")
           .authorizeRequests()
           .antMatchers("/", "/login")
