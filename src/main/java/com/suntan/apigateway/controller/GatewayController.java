@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -37,8 +38,9 @@ public class GatewayController {
 	}
 	
 	@RequestMapping("/logout")
-	public String logOut(HttpServletRequest request, HttpServletResponse response) {
+	public String logOut(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		new SecurityContextLogoutHandler().logout(request, null, null);
+		session.invalidate();
         return "redirect:/";
 	}
 	
